@@ -1,6 +1,5 @@
 <?php
-
-    include file_exists('config/main.local.php') ? 'config/main.local.php' : 'config/main.php';
+    include (file_exists('config/main.local.php') ? 'config/main.local.php' : 'config/main.php');
 
     try {
 
@@ -12,3 +11,6 @@
         echo $e->getMessage();
         exit;
     }
+
+    ini_set('display_errors', 1);
+    require_once 'app/loader.php';
