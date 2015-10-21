@@ -1,5 +1,7 @@
 <?php
 
+namespace app\base;
+
 /**
  * Class Controller
  * @package base

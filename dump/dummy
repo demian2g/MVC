@@ -1,0 +1,21 @@
+$json = '[{"id":"3003","value":"99","rate":"10","address":"Bogdana Khmelnitskogo, 10","note":"Khreschatyk area"},{"id":"3002","value":"75","rate":"10","address":"Bogdana Khmelnitskogo, 10","note":"Khreschatyk area"},{"id":"926","value":"62","rate":"10","address":"Khreschatyk, 29","note":"Besarabs\'ka area"},{"id":"238","value":"79","rate":"10","address":"Proreznaya, 4","note":"Khreschatyk area"},{"id":"194","value":"69","rate":"10","address":"Bogdana Khmelnitskogo, 10","note":"Khreschatyk area"},{"id":"316","value":"159","rate":"9.9","address":"Kruhlouniversytetska, 3/5","note":"Besarabs\'ka area"},{"id":"921","value":"119","rate":"9.7","address":"Sofiivs\'ka, 8","note":"Maydan area"},{"id":"296","value":"112","rate":"9.6","address":"Pushkinska, 20","note":"Khreschatyk area"},{"id":"323","value":"79","rate":"9.5","address":"Sofiivs\'ka, 16","note":"Maydan area"},{"id":"721","value":"79","rate":"9.4","address":"Andriivs\'kyi, 34","note":"Central Podil"},{"id":"207","value":"92","rate":"9.4","address":"Mykhailivs\'ka, 24А","note":"Maydan area"},{"id":"989","value":"89","rate":"9.3","address":"Saksahanskoho Street, 9","note":"Besarabs\'ka area"},{"id":"988","value":"36","rate":"9.3","address":"Mykhailivs\'ka, 24V","note":"Maydan area"},{"id":"788","value":"34","rate":"9.3","address":"Mykhailivs\'ka, 24V","note":"Maydan area"},{"id":"466","value":"52","rate":"9.3","address":"Baseina, 9","note":"Besarabs\'ka area"},{"id":"426","value":"63","rate":"9.3","address":"Velyka Vasylkivska, 23V","note":"Lva Tolstogo Square area"},{"id":"322","value":"69","rate":"9.3","address":"Khreschatyk, 21","note":"Khreschatyk area"},{"id":"204","value":"92","rate":"9.3","address":"L\'va Tolstoho, 1","note":"Besarabs\'ka area"},{"id":"438","value":"79","rate":"9.3","address":"Rognedinskaya Street, 1/13","note":"Besarabs\'ka area"},{"id":"161","value":"89","rate":"9.3","address":"Sofiivs\'ka, 4","note":"Maydan area"},{"id":"95","value":"84","rate":"9.3","address":"Lva Tolstogo Street, 5A","note":"Besarabs\'ka area"},{"id":"67","value":"67","rate":"9.3","address":"Triokhsviatytelska, 9","note":"Maydan area"},{"id":"12","value":"99","rate":"9.3","address":"Pushkinskaya, 31v","note":"Besarabs\'ka area"},{"id":"992","value":"44","rate":"9.1","address":"Pushkinska, 25","note":"Khreschatyk area"},{"id":"716","value":"62","rate":"9.1","address":"Velyka Vasylkivska, 16","note":"Besarabs\'ka area"},{"id":"181","value":"34","rate":"9.1","address":"Tarasa Shevchenko, 2/54","note":"Besarabs\'ka area"},{"id":"737","value":"62","rate":"9","address":"Antonovycha, 72/74","note":"Olimpiysky area"},{"id":"826","value":"84","rate":"9","address":"Mikhalovskaya, 4","note":"Besarabs\'ka area"},{"id":"493","value":"149","rate":"9","address":"Shota Rustaveli, 4","note":"Besarabs\'ka area"},{"id":"346","value":"79","rate":"9","address":"Volodymyrska, 51/53","note":"Golden Gates area"},{"id":"345","value":"129","rate":"9","address":"Sofiivs\'ka, 8","note":"Maydan area"},{"id":"300","value":"69","rate":"9","address":"Pushkinska, 24B","note":"Besarabs\'ka area"},{"id":"335","value":"54","rate":"9","address":"Pushkinskaya, 11","note":"Besarabs\'ka area"},{"id":"71","value":"129","rate":"9","address":"Shota Rustaveli, 29B","note":"Besarabs\'ka area"}]';
+        $test = json_decode($json);
+        try {
+
+            $dbConnection = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+            $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dbConnection->exec("set names utf8");
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+
+        foreach ($test as $row) {
+            $row->note = addslashes($row->note);
+            $row->address = addslashes($row->address);
+            $vals = implode("', '", (array)$row);
+
+            /** @var $dbConnection PDO */
+            $dbConnection->query("INSERT INTO `mvc`.`apts` (`value`, `rate`, `address`, `note`) VALUES ('".$vals."')");
+        }

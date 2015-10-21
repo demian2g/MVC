@@ -1,5 +1,7 @@
 <?php
 
+namespace app\base;
+
 /**
  * Class Route
  * @package base
@@ -10,10 +12,7 @@ class Route {
     const DEFAULT_CONTROLLER = 'site';
     const DEFAULT_ACTION = 'index';
 
-    const APP_DIR = 'app/';
-    const MODEL_PATH = 'app/models/';
-    const CONTROLLER_PATH = 'app/controllers/';
-    const VIEW_PATH = 'app/views/';
+    const CONTROLLER_NAMESPACE = '\app\controllers\\';
 
     public $action;
     public $controller;
@@ -35,25 +34,9 @@ class Route {
 
         /** models ? */
 
-        $controllerFile = $controller . '.php';
-        $this->loadFile(self::CONTROLLER_PATH . $controllerFile);
+        $controllerNS = self::CONTROLLER_NAMESPACE . $controller;
+        $this->run(new $controllerNS, $action);
 
-        $this->run(new $controller, $action);
-
-    }
-
-    /**
-     * TODO: Обработчик ошибок контроллера
-     * @param $fileName string
-     */
-    private function loadFile($fileName){
-        try{
-            if (file_exists($fileName)) {
-                include $fileName;
-            }
-        } catch (\HttpRequestException $e) {
-            echo $e->getMessage();
-        }
     }
 
     /**

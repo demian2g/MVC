@@ -5,12 +5,13 @@ namespace app\controllers;
 use app\base\Controller;
 
 /**
- * Class SiteController
+ * Class RequestController
  * @package controllers
  */
 
-class SiteController extends Controller {
+class RequestController extends Controller{
 
     public function actionIndex(){
+        echo 'Order index';
     }
 }
