@@ -1,4 +1,5 @@
 <?php
+/** магия **/
 function autoload($className)
 {
     $className = ltrim($className, '\\');
@@ -15,4 +16,5 @@ function autoload($className)
 }
 spl_autoload_register('autoload');
 
+include (file_exists('config/main.local.php') ? 'config/main.local.php' : 'config/main.php');
 (new \app\base\Route())->init();
