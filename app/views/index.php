@@ -1,4 +1,35 @@
-<?php
-foreach ($data as $row): ?>
-<p><?=$row['id']?></p>
-<?php endforeach;
+<div class="row" style="padding-top: 80px;">
+    <div class="col-md-6 col-md-offset-3 jumbotron">
+        <form>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="name">Password</label>
+                    <input type="password" class="form-control" id="name" placeholder="Password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="apartment">Apartment</label>
+                    <select class="form-control" name="apartment" id="apartment">
+                        <?php foreach ($data as $row): ?>
+                            <option value="<?=$row['id']?>"><?=$row['address']?> (<?=$row['note']?>)</option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea id="comment" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>

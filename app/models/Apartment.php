@@ -11,7 +11,15 @@ use app\base\Model;
 
 class Apartment extends Model {
 
+    public $id;
+    public $value;
+    public $rate;
+    public $address;
+    public $note;
+
     public static function tableName(){
         return 'apts';
     }
+
+
 }

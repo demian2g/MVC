@@ -10,8 +10,23 @@ namespace app\base;
 class Model {
 
     public $db;
+    public $_attributes;
 
-    public function __construct(){
+    /**
+     * Подключение к базе можно вынести в отдельный метод, чтобы не дергать базу каждый раз при создании объекта
+     * @param null $attributesArray array
+     */
+    public function __construct($attributesArray = null){
+
+//        $this->_attributes = get_object_vars($this);
+//        if (is_array($attributesArray)) {
+//            foreach ($attributesArray as $attribute => $value) {
+//                if (array_key_exists($attribute, $this->_attributes)) {
+//                    $this->$attribute = $value;
+//                }
+//            }
+//        }
+
         try {
             $dbConnection = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
             $dbConnection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -23,5 +38,9 @@ class Model {
             echo $e->getMessage();
             exit;
         }
+    }
+
+    public static function className(){
+        return get_called_class();
     }
 }
