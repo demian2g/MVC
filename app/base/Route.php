@@ -17,8 +17,10 @@ class Route {
     public $action;
     public $controller;
 
+    /**
+     * Метод не предусматривает GET запросы
+     */
     private function init_routes() {
-
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
         $this->controller = (!empty($routes[1])) ? strtolower($routes[1]) : self::DEFAULT_CONTROLLER;

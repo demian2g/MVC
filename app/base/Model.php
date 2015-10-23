@@ -18,14 +18,14 @@ class Model {
      */
     public function __construct($attributesArray = null){
 
-//        $this->_attributes = get_object_vars($this);
-//        if (is_array($attributesArray)) {
-//            foreach ($attributesArray as $attribute => $value) {
-//                if (array_key_exists($attribute, $this->_attributes)) {
-//                    $this->$attribute = $value;
-//                }
-//            }
-//        }
+        $this->_attributes = get_object_vars($this);
+        if (is_array($attributesArray)) {
+            foreach ($attributesArray as $attribute => $value) {
+                if (array_key_exists($attribute, $this->_attributes)) {
+                    $this->$attribute = $value;
+                }
+            }
+        }
 
         try {
             $dbConnection = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
@@ -39,6 +39,10 @@ class Model {
             exit;
         }
     }
+
+//    public static function tableName(){
+//        return;
+//    }
 
     public static function className(){
         return get_called_class();

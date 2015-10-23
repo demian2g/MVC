@@ -1,14 +1,14 @@
 <div class="row" style="padding-top: 80px;">
     <div class="col-md-6 col-md-offset-3 jumbotron">
-        <form>
+        <form method="post" action="/ajax/request">
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="name">Password</label>
-                    <input type="password" class="form-control" id="name" placeholder="Password">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                 </div>
             </div>
             <div class="row">
