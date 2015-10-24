@@ -29,9 +29,9 @@ class AjaxController extends Controller{
         if (isset($_POST) && isset($_POST['email'])) {
             $request = new Request($_POST);
             if ($request->save()){
-                $this->redirect('table/index');
+                return $this->redirect('table/index');
             }
         }
-        $this->redirect('site/index');
+        return $this->redirect('site/index');
     }
 }
