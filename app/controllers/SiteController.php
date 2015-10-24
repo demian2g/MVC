@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\base\Controller;
 use app\models\Apartment;
+use app\models\Request;
 
 /**
  * Class SiteController

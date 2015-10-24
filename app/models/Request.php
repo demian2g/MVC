@@ -6,7 +6,7 @@ use app\base\Model;
 
 class Request extends Model {
 
-    private $columns = ['email', 'name', 'apartment', 'comment'];
+    public $columns = ['email', 'name', 'apartment', 'comment'];
 
     public $email;
     public $name;
@@ -35,6 +35,10 @@ class Request extends Model {
         }
 
         return $output;
+    }
+
+    public function getApartment(){
+        return $this->db->query("SELECT * FROM ".Apartment::tableName()." WHERE id = ".$this->apartment."")->fetchObject(Apartment::className());
     }
 
     public function save($id = null){

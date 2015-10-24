@@ -9,6 +9,8 @@ namespace app\base;
 
 class Model {
 
+    public $columns = [];
+
     public $db;
     public $_attributes;
 
@@ -38,6 +40,15 @@ class Model {
             echo $e->getMessage();
             exit;
         }
+    }
+
+    public function columnLabels(){
+        $labels = [];
+        foreach ($this->columns as $column) {
+            $labels[] = [$column => ucfirst($column)];
+        }
+
+        return $labels;
     }
 
 //    public static function tableName(){
