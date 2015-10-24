@@ -2,9 +2,10 @@
 
 namespace app\controllers;
 
+use app\base\Controller;
 use app\models\Request;
 
-class AjaxController {
+class AjaxController extends Controller{
 
     public function actionChecker() {
         $json = [];
@@ -27,9 +28,11 @@ class AjaxController {
     public function actionRequest(){
         if (isset($_POST) && isset($_POST['email'])) {
             $request = new Request($_POST);
-            $request->save();
+            if ($request->save()){
+                // redirect table
+            }
         }
 
-        //redirect
+        $this->redirect('site/index');
     }
 }

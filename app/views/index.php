@@ -25,7 +25,7 @@
                 <div class="form-group col-md-12">
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea id="comment" class="form-control" rows="3"></textarea>
+                        <textarea id="comment" class="form-control" rows="3" name="comment"></textarea>
                     </div>
                 </div>
             </div>

@@ -16,15 +16,20 @@ class Route {
 
     public $action;
     public $controller;
+    public $_queryParams = null;
 
     /**
      * Метод не предусматривает GET запросы
      */
     private function init_routes() {
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        $routes = explode('/', parse_url($_SERVER['REQUEST_URI'])['path']);
 
         $this->controller = (!empty($routes[1])) ? strtolower($routes[1]) : self::DEFAULT_CONTROLLER;
         $this->action = (!empty($routes[2])) ? strtolower($routes[2]) : self::DEFAULT_ACTION;
+
+        if (isset(parse_url($_SERVER['REQUEST_URI'])['query'])){
+            parse_str(parse_url($_SERVER['REQUEST_URI'])['query'], $this->_queryParams);
+        }
     }
 
     public function init() {
@@ -37,18 +42,19 @@ class Route {
         /** models ? */
 
         $controllerNS = self::CONTROLLER_NAMESPACE . $controller;
-        $this->run(new $controllerNS, $action);
+        $this->run(new $controllerNS, $action, $this->_queryParams);
 
     }
 
     /**
      * TODO: Обработчик ошибок вызова экшна
-     * @param $controller object of Controller class
-     * @param $action string
+     * @param $controller
+     * @param $action
+     * @param $params
      */
-    private function run($controller, $action){
+    private function run($controller, $action, $params){
         try {
-            $controller->$action();
+            $controller->$action($params);
         } catch (\BadMethodCallException $e) {
             echo $e->getMessage();
         }

@@ -42,8 +42,9 @@ class Request extends Model {
             //UPDATE
         } else {
             $query = 'INSERT into '.self::tableName().' ('.$this->columns(true).') VALUES ('.$this->columns().')';
-            $this->db->query($query);
+            return $this->db->query($query);
         }
 
+        return false;
     }
 }
