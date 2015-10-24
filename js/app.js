@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     $('table select').on('change', function(){
         ajaxSend($('form').serialize());
-        $('form').submit();
+        //$('form').submit();
     });
 });
 
