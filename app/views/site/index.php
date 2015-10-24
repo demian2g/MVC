@@ -35,6 +35,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
+            <a href="/table" class="btn btn-success pull-right">Посмотреть все заявки</a>
         </form>
     </div>
 </div>
