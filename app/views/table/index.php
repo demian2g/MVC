@@ -6,7 +6,10 @@ use app\models\Apartment;
         <thead>
         <tr>
             <th>#</th>
-            <th><input type="email" class="form-control" id="email" name="email" placeholder="Email" <?=(isset($params['email']) && $params['email'] != '') ? "value=\"".$params['email']."\"" : null?>></th>
+            <th><input type="email" class="form-control" id="email" name="email" placeholder="Email" <?=
+                (isset($params['email']) && $params['email'] != '') ?
+                    "value=\"".$params['email']."\"" :
+                    null?>></th>
             <th>Name</th>
             <th><select name="apartment" class="form-control">
                     <option value="">- Choose apartment -</option>
@@ -20,7 +23,6 @@ use app\models\Apartment;
         <tbody>
         <?php
         foreach ($data as $row) {?>
-
             <tr>
                 <th scope="row"><?=$row->id?></th>
                 <td><?=$row->email?></td>
@@ -28,7 +30,6 @@ use app\models\Apartment;
                 <td><?=$row->getApartment()->address?></td>
                 <td><?=$row->comment?></td>
             </tr>
-
         <?php } ?>
         </tbody>
     </table>

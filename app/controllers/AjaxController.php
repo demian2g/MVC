@@ -5,6 +5,11 @@ namespace app\controllers;
 use app\base\Controller;
 use app\models\Request;
 
+/**
+ * Class AjaxController
+ * @package app\controllers
+ */
+
 class AjaxController extends Controller{
 
     public function actionChecker() {

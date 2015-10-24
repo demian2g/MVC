@@ -4,6 +4,11 @@ namespace app\models;
 
 use app\base\Model;
 
+/**
+ * Class Request
+ * @package app\models
+ */
+
 class Request extends Model {
 
     public $columns = ['email', 'name', 'apartment', 'comment'];

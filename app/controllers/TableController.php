@@ -6,6 +6,11 @@ use app\base\Controller;
 use app\models\Apartment;
 use app\models\Request;
 
+/**
+ * Class TableController
+ * @package app\controllers
+ */
+
 class TableController extends Controller {
 
     public function actionIndex($params = null){

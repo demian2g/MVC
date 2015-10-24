@@ -39,8 +39,6 @@ class Route {
         $controller = ucfirst($this->controller) . 'Controller';
         $action = 'action' . ucfirst($this->action);
 
-        /** models ? */
-
         $controllerNS = self::CONTROLLER_NAMESPACE . $controller;
         $this->run(new $controllerNS, $action, $this->_queryParams);
 
