@@ -16,7 +16,7 @@ class TableController extends Controller {
                 if ($value != '') $query[$param] = $value;
             }
 
-//            if (count($query) < 1) return $this->redirect('index');
+            if (count($query) < 1) return $this->redirect('index');
 
             if (count($query) > 1) {
                 $first = array_slice($query, 0, 1, true);
@@ -32,13 +32,13 @@ class TableController extends Controller {
                 ->query("SELECT * FROM ".Request::tableName().$builder."")
                 ->fetchAll(\PDO::FETCH_CLASS, Request::className()));
 
-            return $this->view->render('index', $data);
+            return $this->view->render('index', $data, $params);
         }
 
         $data = ((new Apartment())->db
             ->query("SELECT * FROM ".Request::tableName()."")
             ->fetchAll(\PDO::FETCH_CLASS, Request::className()));
 
-        return $this->view->render('index', $data);
+        return $this->view->render('index', $data, $params);
     }
 }

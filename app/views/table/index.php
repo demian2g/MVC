@@ -6,12 +6,12 @@ use app\models\Apartment;
         <thead>
         <tr>
             <th>#</th>
-            <th><input type="email" class="form-control" id="email" name="email" placeholder="Email"></th>
+            <th><input type="email" class="form-control" id="email" name="email" placeholder="Email" <?=(isset($params['email']) && $params['email'] != '') ? "value=\"".$params['email']."\"" : null?>></th>
             <th>Name</th>
             <th><select name="apartment" class="form-control">
                     <option value="">- Choose apartment -</option>
                     <?php foreach (Apartment::map(Apartment::getAllApartments(), 'id', 'address') as $key => $value) {?>
-                    <option value="<?=$key?>"><?=$value?></option>
+                    <option value="<?=$key?>" <?=(isset($params['apartment']) && $params['apartment'] == $key) ? 'selected' : null?>><?=$value?></option>
                     <?php } ?>
                     </select></th>
             <th>Comment</th>
