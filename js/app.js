@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 function ajaxSend(data){
     $.ajax({
-        method: 'GET',
+        method: 'POST',
         url: '/table/search',
         dataType: 'json',
         data: data,

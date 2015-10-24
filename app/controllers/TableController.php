@@ -49,7 +49,7 @@ class TableController extends Controller {
     public function actionSearch(){
 
         $columns = (new Request())->columns;
-        $params = $_GET;
+        $params = $_POST;
 
         if ($params && is_array($params)) {
 
