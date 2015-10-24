@@ -14,6 +14,7 @@ class Controller {
 
     public function __construct(){
         $this->view = new View();
+        $this->view->modelName = $this->getModelName(true);
     }
 
     public function getModelName($toLower = false){

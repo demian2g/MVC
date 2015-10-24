@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include 'app/views/'.$view.'.php'; ?>
+        <?php include 'app/views/'.$this->modelName.'/'.$view.'.php'; ?>
     </div>
 
     <script src="/js/jquery-2.1.4.min.js"></script>

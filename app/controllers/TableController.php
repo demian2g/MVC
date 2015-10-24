@@ -9,7 +9,9 @@ use app\models\Request;
 class TableController extends Controller {
 
     public function actionIndex(){
-        $data = ((new Apartment())->db->query("SELECT * FROM ".Request::tableName()."")->fetchAll(\PDO::FETCH_CLASS, Request::className()));
-        return $this->view->render('table', $data);
+        $data = ((new Apartment())->db
+            ->query("SELECT * FROM ".Request::tableName()."")
+            ->fetchAll(\PDO::FETCH_CLASS, Request::className()));
+        return $this->view->render('index', $data);
     }
 }
