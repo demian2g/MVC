@@ -21,7 +21,7 @@ use app\models\Apartment;
         <?php
         foreach ($data as $row) {?>
 
-            <tr>
+            <tr class="detach">
                 <th scope="row"><?=$row->id?></th>
                 <td><?=$row->email?></td>
                 <td><?=$row->name?></td>

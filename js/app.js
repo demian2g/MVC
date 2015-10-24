@@ -3,7 +3,7 @@ $(document).ready(function () {
     button.prop('disabled', true);
     errors = true;
 
-    $('input').on('blur', function () {
+    $('input[datatype=check]').on('blur', function () {
         var self = $(this);
         var formGroup = self.parent('.form-group');
         $.ajax({
@@ -24,7 +24,6 @@ $(document).ready(function () {
                     }
                 });
 
-                console.log(errors);
                 if (errors) {
                     button.prop('disabled', true);
                 } else button.prop('disabled', false);
@@ -32,17 +31,29 @@ $(document).ready(function () {
         });
     });
 
+    $('form').submit(function(){
+        ajaxSend($(this).serialize());
+        return false;
+    });
+
     $('table select').on('change', function(){
         ajaxSend($('form').serialize());
-        $('form').submit();
     });
 });
 
 function ajaxSend(data){
     $.ajax({
         method: 'GET',
-        url: '/table',
+        url: '/table/search',
         dataType: 'json',
-        data: data
+        data: data,
+        success: function(response){
+            if (response) {
+                $('tr.detach').detach();
+                $.each(response, function(key, value){
+                    $('tbody').append('<tr><th scope="row">' + value.id + '</th><td>' + value.email + '</td><td>' + value.name + '</td><td>' + value.apartment + '</td><td>' + value.comment + '</td>');
+                });
+            }
+        }
     });
 }
