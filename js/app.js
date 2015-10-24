@@ -3,7 +3,7 @@ $(document).ready(function () {
     button.prop('disabled', true);
     errors = true;
 
-    $('input').on('blur', function () {
+    $('input[datatype=check]').on('blur', function () {
         var self = $(this);
         var formGroup = self.parent('.form-group');
         $.ajax({
@@ -34,7 +34,6 @@ $(document).ready(function () {
 
     $('table select').on('change', function(){
         ajaxSend($('form').serialize());
-        //$('form').submit();
     });
 });
 

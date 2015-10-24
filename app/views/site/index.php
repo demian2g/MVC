@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" datatype="check">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" datatype="check">
                 </div>
             </div>
             <div class="row">
