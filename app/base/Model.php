@@ -51,11 +51,19 @@ class Model {
         return $labels;
     }
 
-//    public static function tableName(){
-//        return;
-//    }
-
     public static function className(){
         return get_called_class();
+    }
+
+    public static function map($array = [], $key, $value){
+        $map = [];
+        foreach ($array as $object) {
+            if (is_object($object)) {
+                $map[$object->$key] = $object->$value;
+            } else {
+                $map[$object[$key]] = $object[$value];
+            }
+        }
+        return $map;
     }
 }

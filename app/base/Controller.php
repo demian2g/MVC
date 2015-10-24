@@ -25,10 +25,10 @@ class Controller {
     }
 
     public function redirect($url, $options = null){
-        $controller = $this->getModelName();
+        $controller = $this->getModelName(true);
         $action = $url;
 
-        if (explode('/', $url)) {
+        if (explode('/', $url)[1]) {
             $controller = explode('/', $url)[0];
             $action = explode('/', $url)[1];
         }

@@ -21,5 +21,9 @@ class Apartment extends Model {
         return 'apts';
     }
 
+    public static function getAllApartments(){
+        return ((new self())->db->query("SELECT * FROM ".self::tableName()."")->fetchAll(\PDO::FETCH_CLASS, self::className()));
+    }
+
 
 }

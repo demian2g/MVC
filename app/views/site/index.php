@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $data array
+ */
+?>
 <div class="row" style="padding-top: 80px;">
     <div class="col-md-6 col-md-offset-3 jumbotron">
         <form method="post" action="/ajax/request">
@@ -15,8 +20,8 @@
                 <div class="form-group col-md-12">
                     <label for="apartment">Apartment</label>
                     <select class="form-control" name="apartment" id="apartment">
-                        <?php foreach ($data as $row): ?>
-                            <option value="<?=$row['id']?>"><?=$row['address']?> (<?=$row['note']?>)</option>
+                        <?php foreach ($data as $row):?>
+                            <option value="<?=$row->id?>"><?=$row->address?> (<?=$row->note?>)</option>
                         <?php endforeach; ?>
                     </select>
                 </div>
