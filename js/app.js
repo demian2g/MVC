@@ -33,15 +33,6 @@ $(document).ready(function () {
     });
 
     $('table select').on('change', function(){
-        ajaxSend($('form').serialize());
+        $('form').submit());
     });
 });
-
-function ajaxSend(data){
-    $.ajax({
-        method: 'GET',
-        url: '/table',
-        dataType: 'json',
-        data: data
-    });
-}
