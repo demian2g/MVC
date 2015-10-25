@@ -33,6 +33,6 @@ $(document).ready(function () {
     });
 
     $('table select').on('change', function(){
-        $('form').submit());
+        $('form').submit();
     });
 });
