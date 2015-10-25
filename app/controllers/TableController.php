@@ -46,6 +46,10 @@ class TableController extends Controller {
         return $this->view->render('index', $data);
     }
 
+    /**
+     * Ajax Search
+     * @return bool
+     */
     public function actionSearch(){
 
         $columns = (new Request())->columns;
@@ -73,6 +77,9 @@ class TableController extends Controller {
             } else $builder = " WHERE " . array_keys($query)[0] . " = '" . array_values($query)[0] . "'";
 
             $data = ((new Apartment())->db->query("SELECT * FROM " . Request::tableName() . $builder . "")->fetchAll(\PDO::FETCH_CLASS, Request::className()));
+            foreach ($data as $row) {
+                $row->apartment = $row->getApartment()->address;
+            }
 
             echo json_encode($data);
         }

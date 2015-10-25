@@ -51,9 +51,11 @@ function ajaxSend(data){
             if (response) {
                 $('tr.detach').detach();
                 $.each(response, function(key, value){
-                    $('tbody').append('<tr><th scope="row">' + value.id + '</th><td>' + value.email + '</td><td>' + value.name + '</td><td>' + value.apartment + '</td><td>' + value.comment + '</td>');
+                    if (value.comment == null) value.comment = '';
+                    $('tbody').append('<tr class="detach"><th scope="row">' + value.id + '</th><td>' + value.email + '</td><td>' + value.name + '</td><td>' + value.apartment + '</td><td>' + value.comment + '</td>');
                 });
             }
-        }
+        },
+        error:  function(){window.location = '/table'}
     });
 }
