@@ -42,6 +42,36 @@ class Model {
         }
     }
 
+    public static function find($params = null) {
+        $model = new self;
+        if ($params && is_array($params)) {
+            $query = [];
+            foreach ($params as $param => $value) {
+                if ($value != '')
+                    $query[$param] = $value;
+            }
+
+            if (count($query) > 1) {
+                $first = array_slice($query, 0, 1, true);
+                $query = array_slice($query, 1, null, true);
+
+                $builder = " WHERE ".array_keys($first)[0]." = '".array_values($first)[0]."'";
+                foreach ($query as $key => $value) {
+                    $builder .= " AND ".$key." = '".$value."'";
+                }
+            } else $builder = " WHERE ".array_keys($query)[0]." = '".array_values($query)[0]."'";
+            $data = $model->db
+                ->query("SELECT * FROM ".self::tableName().$builder."")
+                ->fetchAll(\PDO::FETCH_CLASS, self::className());
+        } else {
+            $data = $model->db
+                ->query("SELECT * FROM ".self::tableName()."")
+                ->fetchAll(\PDO::FETCH_CLASS, self::className());
+        }
+
+        return $data;
+    }
+
     public function columnLabels(){
         $labels = [];
         foreach ($this->columns as $column) {

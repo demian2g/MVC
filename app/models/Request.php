@@ -22,6 +22,10 @@ class Request extends Model {
         return 'requests';
     }
 
+    public static function getAllRequests(){
+
+    }
+
     /**
      * Легкая наркомания
      * @param bool $query

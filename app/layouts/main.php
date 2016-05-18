@@ -13,6 +13,9 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
 
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="/js/map.js" type="text/javascript"></script>
+
 </head>
 <body>
     <div class="container">

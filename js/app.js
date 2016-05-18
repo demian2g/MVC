@@ -36,3 +36,10 @@ $(document).ready(function () {
         $('form').submit();
     });
 });
+
+function Test(){
+    console.log(this instanceof Window);
+}
+
+var Tes = new Test();
+Test();
